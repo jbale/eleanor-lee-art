@@ -47,9 +47,9 @@ const useStyles = makeStyles({
   },
   navLink: {
     textDecoration: 'none',
+    textDecorationColor: 'black',
     '&:hover': {
-      textDecoration: 'underline',
-      textDecorationColor: 'black'
+      textDecoration: 'underline'
     }
   }
 });
@@ -101,7 +101,7 @@ const Header = ({ title, subtitle, logo }) => {
           <ul className={classes.nav}>
             {menu.map((menuItem) => (
               <li key={menuItem.to} className={classes.navItem}>
-                <Link to={menuItem.to} className={classes.navLink}>
+                <Link to={menuItem.to} className={classes.navLink} activeStyle={{ textDecoration: 'underline' }}>
                   <Box color="text.primary">{menuItem.display}</Box>
                 </Link>  
               </li>
