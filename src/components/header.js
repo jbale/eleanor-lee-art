@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -80,13 +81,11 @@ const Header = ({ title, subtitle, logo }) => {
 
   const classes = useStyles();
 
-  
-
   return (
     <header className={classes.header}>
       <div className={classes.container}>
         <Link className={classes.siteTitleLink} to="/">
-          <img className={classes.siteLogo} src={logo} alt="logo" />
+          <Img className={classes.siteLogo} fixed={logo} alt="logo" />
         </Link>
         <h1 className={classes.siteTitle}>
           <Link className={classes.siteTitleLink} to="/">
@@ -101,7 +100,7 @@ const Header = ({ title, subtitle, logo }) => {
         <nav>
           <ul className={classes.nav}>
             {menu.map((menuItem) => (
-              <li className={classes.navItem}>
+              <li key={menuItem.to} className={classes.navItem}>
                 <Link to={menuItem.to} className={classes.navLink}>
                   <Box color="text.primary">{menuItem.display}</Box>
                 </Link>  
@@ -117,7 +116,7 @@ const Header = ({ title, subtitle, logo }) => {
 Header.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  logo: PropTypes.string,
+  logo: PropTypes.object,
 }
 
 Header.defaultProps = {

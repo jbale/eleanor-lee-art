@@ -41,7 +41,13 @@ const Layout = ({ children }) => {
         title
         subtitle
         logo {
-          publicURL
+          localFile {
+            image: childImageSharp {
+              fixed(width: 100) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
         }
       }
     }
@@ -54,7 +60,7 @@ const Layout = ({ children }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Helmet>
       <ThemeProvider theme={theme}>
-        <Header title={data.strapiHeader.title} subtitle={data.strapiHeader.subtitle} logo={data.strapiHeader.logo.publicURL} />
+        <Header title={data.strapiHeader.title} subtitle={data.strapiHeader.subtitle} logo={data.strapiHeader.logo.localFile.image.fixed} />
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
