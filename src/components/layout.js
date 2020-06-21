@@ -34,7 +34,7 @@ const theme = createMuiTheme({
   }
 });
 
-const Layout = ({ children }) => {
+const Layout = ({ hero, children }) => {
   const data = useStaticQuery(graphql`
     query SiteHeaderQuery {
       strapiHeader {
@@ -61,6 +61,11 @@ const Layout = ({ children }) => {
       </Helmet>
       <ThemeProvider theme={theme}>
         <Header title={data.strapiHeader.title} subtitle={data.strapiHeader.subtitle} logo={data.strapiHeader.logo.localFile.image.fixed} />
+        {hero && (
+          <div className="hero">
+            {hero}
+          </div>
+        )}
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with

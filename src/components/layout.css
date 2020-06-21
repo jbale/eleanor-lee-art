@@ -13,3 +13,8 @@ main {
   margin: 0 auto;
   padding: 1.5vw 2rem 0;
 }
+
+.hero {
+  position: relative;
+  height: calc(100vh - 200px);
+}

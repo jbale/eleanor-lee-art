@@ -1,32 +1,49 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import AwesomeSlider from 'react-awesome-slider';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import 'react-awesome-slider/dist/custom-animations/scale-out-animation.css';
+import 'react-awesome-slider/dist/styles.css';
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+
+const AutoplaySlider = withAutoplay(AwesomeSlider);
+
+const IndexPage = ({ data }) => {
+
+  const hero = (
+    <AutoplaySlider
+      animation="scaleOutAnimation"
+      fillParent={true}
+      play={true}
+      cancelOnInteraction={false}
+      interval={6000}>
+        {data.strapiHome.slider.map((image) => (
+          <div key={image.id} data-src={image.localFile.publicURL}></div>
+        ))}
+    </AutoplaySlider>
+  );
+
+  return (
+    <Layout hero={hero}>
+      <SEO title="Home" />
+    </Layout>
+  );
+}
 
 export default IndexPage
 
-// export const pageQuery = graphql`
-//   query IndexQuery {
-//     strapiPaintings {
-//       description
-//       id
-//       title
-//     }
-//   }
-// `;
+export const pageQuery = graphql`
+  query HomeQuery {
+    strapiHome {
+      slider {
+        id
+        localFile {
+          publicURL
+        }
+      }
+    }
+  }
+`;
