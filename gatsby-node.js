@@ -22,13 +22,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                         id
                         created_at
                         title
-                        media {
-                            localFile {
-                                childImageSharp {
-                                    id
-                                }
-                            }
-                        }
                     }
                 }
             }

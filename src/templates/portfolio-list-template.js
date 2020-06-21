@@ -1,20 +1,37 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import { graphql, navigate} from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 const PortfolioList = ({data}) => {
   
+import Pagination from '@material-ui/lab/Pagination';
+const useStyles = makeStyles((theme) => ({
+  paginationContainer: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+}));
+
+const PortfolioList = ({data, pageContext}) => {
+  const classes = useStyles();
   const paintings = data.allStrapiPaintings.edges;
 
   return (
     <Layout>
       <SEO title="Portfolio" />
       <h1>Portfolio</h1>
-      {paintings.map(({ node }) => {
-          return <div key={node.id}>{node.title}</div>
-      })}
+      { pageContext.numPages > 1 && (
+        <div className={classes.paginationContainer}>
+          <Pagination
+            count={pageContext.numPages} 
+            page={pageContext.currentPage}
+            onChange={(event, page) => page > 1 ? navigate(`/portfolio/${page}`) : navigate(`/portfolio`) }
+            color="primary" />
+        </div>
+      )}
     </Layout>
   );
 }
