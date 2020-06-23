@@ -4,13 +4,9 @@ import { graphql, navigate } from 'gatsby'
 
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
-import HoverImage from '../components/HoverImage'
-
+import { Paintings } from '../components/Paintings'
 
 import Pagination from '@material-ui/lab/Pagination';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 const useStyles = makeStyles((theme) => ({
   gridList: {
@@ -36,22 +32,7 @@ const PortfolioList = ({ data, pageContext }) => {
     <Layout>
       <SEO title="Portfolio" />
       <h1>Portfolio</h1>
-      <GridList className={classes.gridList} cellHeight={600} cols={2} spacing={30}>
-        {paintings.map(({ node }) => (
-          <GridListTile key={node.id} cols={1} >
-            <HoverImage detail={node.detail.localFile.childImageSharp.fluid} overview={node.overview.localFile.childImageSharp.fluid} />
-            <GridListTileBar
-              titlePosition="top"
-              title={node.title}
-              classes={{
-                root: classes.titleBar,
-                title: classes.title,
-              }}
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-
+      <Paintings paintings={paintings} />
       {pageContext.numPages > 1 && (
         <div className={classes.paginationContainer}>
           <Pagination
