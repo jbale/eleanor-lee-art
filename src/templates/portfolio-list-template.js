@@ -2,9 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { graphql, navigate} from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import HoverImage from '../components/hoverImage'
+import Layout from '../components/Layout'
+import SEO from '../components/Seo'
+import HoverImage from '../components/HoverImage'
 
 
 import Pagination from '@material-ui/lab/Pagination';
@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary.dark,
   },
   titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    background: `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)`
   },
   paginationContainer: {
     display: 'flex',
@@ -42,6 +41,7 @@ const PortfolioList = ({data, pageContext}) => {
           <GridListTile key={node.id} cols={1} >
             <HoverImage detail={node.detail.localFile.childImageSharp.fluid} overview={node.overview.localFile.childImageSharp.fluid} />
             <GridListTileBar
+              titlePosition="top"
               title={node.title}
               classes={{
                 root: classes.titleBar,

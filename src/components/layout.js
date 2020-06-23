@@ -14,7 +14,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-import Header from './header'
+import Header from './Header'
 import './layout.css'
 
 const theme = createMuiTheme({

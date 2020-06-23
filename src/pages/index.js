@@ -6,8 +6,8 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/custom-animations/scale-out-animation.css';
 import 'react-awesome-slider/dist/styles.css';
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
