@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PortfolioList = ({ data, pageContext }) => {
   const classes = useStyles();
-  const paintings = data.allStrapiPaintings.edges;
+  const paintings = data.allStrapiPaintings.edges.map(({ node }) => node);
 
   return (
     <Layout>
