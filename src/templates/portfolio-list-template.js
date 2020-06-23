@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { graphql, navigate} from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
@@ -15,7 +15,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 const useStyles = makeStyles((theme) => ({
   gridList: {
     paddingBottom: '2rem'
-  },  
+  },
   title: {
     color: theme.palette.text.primary.dark,
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const PortfolioList = ({data, pageContext}) => {
+const PortfolioList = ({ data, pageContext }) => {
   const classes = useStyles();
   const paintings = data.allStrapiPaintings.edges;
 
@@ -51,13 +51,13 @@ const PortfolioList = ({data, pageContext}) => {
           </GridListTile>
         ))}
       </GridList>
-      
-      { pageContext.numPages > 1 && (
+
+      {pageContext.numPages > 1 && (
         <div className={classes.paginationContainer}>
           <Pagination
-            count={pageContext.numPages} 
+            count={pageContext.numPages}
             page={pageContext.currentPage}
-            onChange={(event, page) => page > 1 ? navigate(`/portfolio/${page}`) : navigate(`/portfolio`) }
+            onChange={(event, page) => page > 1 ? navigate(`/portfolio/${page}`) : navigate(`/portfolio`)}
             color="primary" />
         </div>
       )}

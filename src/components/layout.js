@@ -52,7 +52,7 @@ const Layout = ({ hero, children }) => {
       }
     }
   `)
-  
+
   return (
     <>
       <Helmet>

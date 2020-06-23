@@ -103,7 +103,7 @@ const Header = ({ title, subtitle, logo }) => {
               <li key={menuItem.to} className={classes.navItem}>
                 <Link to={menuItem.to} className={classes.navLink} activeStyle={{ textDecoration: 'underline' }}>
                   <Box color="text.primary">{menuItem.display}</Box>
-                </Link>  
+                </Link>
               </li>
             ))}
           </ul>

@@ -20,9 +20,9 @@ const IndexPage = ({ data }) => {
       play={true}
       cancelOnInteraction={false}
       interval={6000}>
-        {data.strapiHome.slider.map((image) => (
-          <div key={image.id} data-src={image.localFile.publicURL}></div>
-        ))}
+      {data.strapiHome.slider.map((image) => (
+        <div key={image.id} data-src={image.localFile.publicURL}></div>
+      ))}
     </AutoplaySlider>
   );
 
