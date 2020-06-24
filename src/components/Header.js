@@ -85,7 +85,7 @@ const Header = ({ title, subtitle, logo }) => {
     <header className={classes.header}>
       <div className={classes.container}>
         <Link className={classes.siteTitleLink} to="/">
-          <Img className={classes.siteLogo} fixed={logo} alt="logo" />
+          <Img className={classes.siteLogo} fixed={logo} loading="eager" alt="logo" />
         </Link>
         <h1 className={classes.siteTitle}>
           <Link className={classes.siteTitleLink} to="/">
