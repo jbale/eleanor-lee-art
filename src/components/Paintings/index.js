@@ -1,3 +1,4 @@
 import Paintings from './Paintings';
+import Painting from './Painting';
 
-export { Paintings };
+export { Paintings, Painting };

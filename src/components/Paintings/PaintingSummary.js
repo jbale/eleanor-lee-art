@@ -33,7 +33,7 @@ const PaintingSummary = ({ painting }) => {
   const classes = useStyles();
 
   return (
-    <Link className={classes.root} to={'/portfolio/painting/1'}>
+    <Link className={classes.root} to={`/portfolio/${painting.strapiId}`}>
       <div className={classes.paintingImage}>
         <HoverImage detail={painting.detail.localFile.childImageSharp.fluid} overview={painting.overview.localFile.childImageSharp.fluid} />
         <div className={classes.paintingTitle}>

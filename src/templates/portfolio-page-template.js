@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const PortfolioList = ({ data, pageContext }) => {
+const PortfolioPageTemplate = ({ data, pageContext }) => {
   const classes = useStyles();
   const paintings = data.allStrapiPaintings.edges.map(({ node }) => node);
 
@@ -46,13 +46,12 @@ const PortfolioList = ({ data, pageContext }) => {
   );
 }
 
-
 export const portfolioListQuery = graphql`
   query PaintingListQuery($skip: Int!, $limit: Int!) {
     allStrapiPaintings(sort: {fields: [created_at], order: DESC}, limit: $limit, skip: $skip) {
       edges {
         node {
-          id
+          strapiId
           created_at
           title
           media {
@@ -91,4 +90,4 @@ export const portfolioListQuery = graphql`
   }
 `
 
-export default PortfolioList
+export default PortfolioPageTemplate;

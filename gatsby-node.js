@@ -6,47 +6,63 @@
 
 // You can delete this file if you're not using it
 
-const path = require('path')
+const path = require('path');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-    const { createPage } = actions
+  const { createPage } = actions
 
-    const result = await graphql(
-        `{
-            allStrapiPaintings(
-                sort: {fields: [created_at], order: DESC}, 
-                limit: 1000
-            ) {
-                edges {
-                    node {
-                        id
-                        created_at
-                        title
-                    }
-                }
+  const result = await graphql(
+    `{
+        allStrapiPaintings(
+          sort: {fields: [created_at], order: DESC},
+          limit: 1000
+        ) {
+          edges {
+            node {
+              strapiId
+              created_at
+              title
             }
-        }`
-    )
+          }
+        }
+    }`
+  )
 
-    if (result.errors) {
-        reporter.panicOnBuild(`Error while running GraphQL query.`)
-        return
-    }
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
 
-    // Create portfolio-list pages
-    const posts = result.data.allStrapiPaintings.edges
-    const postsPerPage = 6
-    const numPages = Math.ceil(posts.length / postsPerPage)
-    Array.from({ length: numPages }).forEach((_, i) => {
-        createPage({
-            path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
-            component: path.resolve("./src/templates/portfolio-list-template.js"),
-            context: {
-                limit: postsPerPage,
-                skip: i * postsPerPage,
-                numPages,
-                currentPage: i + 1,
-            },
-        })
+  // Create portfolio-list pages
+  const paintings = result.data.allStrapiPaintings.edges
+  const paintingsPerPage = 6
+  const numPages = Math.ceil(paintings.length / paintingsPerPage)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
+      component: path.resolve("./src/templates/portfolio-page-template.js"),
+      context: {
+        limit: paintingsPerPage,
+        skip: i * paintingsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
     })
+  });
+
+  // Create pages for each painting.
+  paintings.forEach(({ node }, index) => {
+    const prev = paintings[index - 1];
+    const next = paintings[index + 1];
+
+    createPage({
+      path: `portfolio/${node.strapiId}`,
+      component: path.resolve(`src/templates/painting-page-template.js`),
+      context: {
+        strapiId: node.strapiId,
+        next: next ? next.node.strapiId : null,
+        prev: prev ? prev.node.strapiId : null
+      },
+    })
+  })
 }
