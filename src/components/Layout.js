@@ -8,7 +8,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
@@ -18,7 +17,8 @@ import Header from './Header'
 import './layout.css'
 import { Container, CssBaseline } from '@material-ui/core';
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
+  spacing: factor => `${0.25 * factor}rem`,
   palette: {
     primary: blue
   },
@@ -41,11 +41,11 @@ const useStyles = makeStyles({
     minHeight: '100vh'
   },
   content: {
-    paddingBottom: '2.5rem'
+    paddingBottom: '5rem'
   },
   hero: {
     position: 'relative',
-    height: 'calc(100vh - 200px)',
+    height: 'calc(100vh - 240px)',
     marginBottom: '5rem'
   },
   footer: {
@@ -59,23 +59,6 @@ const useStyles = makeStyles({
 
 const Layout = ({ hero, children }) => {
   const classes = useStyles();
-  const data = useStaticQuery(graphql`
-    query SiteHeaderQuery {
-      strapiHeader {
-        title
-        subtitle
-        logo {
-          localFile {
-            image: childImageSharp {
-              fixed(width: 100) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
 
   return (
     <>

@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paintingItem: {
     flex: `0 0 100%`,
-    marginBottom: `${theme.spacing(4)}px`,
+    marginBottom: `${theme.spacing(4)}`,
     [theme.breakpoints.up('sm')]: {
-      flex: `0 0 calc(50% - ${theme.spacing(2)}px)`,
+      flex: `0 0 calc(50% - ${theme.spacing(2)})`,
     }
   }
 }));
