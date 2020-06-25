@@ -23,9 +23,9 @@ const PaintingTemplate = ({ data, pageContext}) => {
 }
 
 export const paintingPageTemplateQuery = graphql`
-  query PaintingPageTemplate($strapiId: Int!) {
-    strapiPaintings(strapiId: { eq: $strapiId }) {
-      strapiId
+  query PaintingPageTemplate($slug: String!) {
+    strapiPaintings(slug: { eq: $slug }) {
+      slug
       created_at
       title
       media {

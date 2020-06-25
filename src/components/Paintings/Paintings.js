@@ -30,7 +30,7 @@ const Paintings = ({ paintings }) => {
     <ul className={classes.root}>
       {
         paintings.map((painting) => (
-          <li key={painting.id} className={classes.paintingItem}>
+          <li key={painting.slug} className={classes.paintingItem}>
             <PaintingSummary painting={painting} />
           </li>
         ))

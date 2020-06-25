@@ -51,7 +51,7 @@ export const portfolioListQuery = graphql`
     allStrapiPaintings(sort: {fields: [created_at], order: DESC}, limit: $limit, skip: $skip) {
       edges {
         node {
-          strapiId
+          slug
           created_at
           title
           media {

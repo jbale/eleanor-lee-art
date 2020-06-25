@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         ) {
           edges {
             node {
-              strapiId
+              slug
               created_at
               title
             }
@@ -56,12 +56,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const next = paintings[index + 1];
 
     createPage({
-      path: `portfolio/${node.strapiId}`,
+      path: `portfolio/${node.slug}`,
       component: path.resolve(`src/templates/painting-page-template.js`),
       context: {
-        strapiId: node.strapiId,
-        next: next ? next.node.strapiId : null,
-        prev: prev ? prev.node.strapiId : null
+        slug: node.slug,
+        next: next ? `/portfolio/${next.node.slug}` : null,
+        prev: prev ? `/portfolio/${prev.node.slug}` : null
       },
     })
   })
