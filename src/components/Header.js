@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
 
-import Box from '@material-ui/core/Box';
+import Logo from './Logo';
+import Nav from './Nav';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   header: {
-    paddingTop: '1rem',
-    paddingBottom: '1rem'
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    marginBottom: theme.spacing(10)
   },
   container: {
     display: 'flex',
@@ -17,65 +17,10 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  siteTitle: {
-    textAlign: 'center',
-    fontWeight: 100,
-    marginBottom: 0
-  },
-  siteSubtitle: {
-    textAlign: 'center',
-    fontWeight: 100,
-    marginTop: 0
-  },
-  siteTitleLink: {
-    textDecoration: 'none'
-  },
-  siteLogo: {
-    width: '100px'
-  },
-  nav: {
-    display: 'flex',
-    margin: 0,
-    padding: 0
-  },
-  navItem: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-    paddingLeft: '1rem',
-    paddingRight: '1rem'
-  },
-  navLink: {
-    textDecoration: 'none',
-    textDecorationColor: 'black',
-    '&:hover': {
-      textDecoration: 'underline'
-    }
+  logoContainer: {
+    marginBottom: theme.spacing(4)
   }
-});
-
-const menu = [
-  {
-    to: '/',
-    display: 'Home'
-  },
-  {
-    to: '/news',
-    display: 'News'
-  },
-  {
-    to: '/portfolio',
-    display: 'Portfolio'
-  },
-  {
-    to: '/about',
-    display: 'About'
-  },
-  {
-    to: '/contact',
-    display: 'Contact'
-  }
-]
+}));
 
 const Header = ({ title, subtitle, logo }) => {
 
@@ -84,30 +29,10 @@ const Header = ({ title, subtitle, logo }) => {
   return (
     <header className={classes.header}>
       <div className={classes.container}>
-        <Link className={classes.siteTitleLink} to="/">
-          <Img className={classes.siteLogo} fixed={logo} loading="eager" alt="logo" />
-        </Link>
-        <h1 className={classes.siteTitle}>
-          <Link className={classes.siteTitleLink} to="/">
-            <Box color="text.primary">{title}</Box>
-          </Link>
-        </h1>
-        <h4 className={classes.siteSubtitle}>
-          <Link className={classes.siteTitleLink} to="/">
-            <Box color="text.primary">{subtitle}</Box>
-          </Link>
-        </h4>
-        <nav>
-          <ul className={classes.nav}>
-            {menu.map((menuItem) => (
-              <li key={menuItem.to} className={classes.navItem}>
-                <Link to={menuItem.to} className={classes.navLink} activeStyle={{ textDecoration: 'underline' }}>
-                  <Box color="text.primary">{menuItem.display}</Box>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className={classes.logoContainer}>
+          <Logo  />
+        </div>
+        <Nav />
       </div>
     </header>
   )

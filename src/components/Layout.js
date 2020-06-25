@@ -87,7 +87,7 @@ const Layout = ({ hero, children }) => {
         <CssBaseline />
         <div className={classes.root}>
           <div className={classes.content}>
-            <Header title={data.strapiHeader.title} subtitle={data.strapiHeader.subtitle} logo={data.strapiHeader.logo.localFile.image.fixed} />
+            <Header />
             {hero && (
               <div className={classes.hero}>
                 {hero}
