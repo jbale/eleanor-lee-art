@@ -10,30 +10,12 @@ import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Header from './Header'
 import './layout.css'
 import { Container, CssBaseline } from '@material-ui/core';
-
-let theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`,
-  palette: {
-    primary: blue
-  },
-  typography: {
-    fontFamily: [
-      'Quicksand',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(',')
-  }
-});
+import { theme } from '../theme';
 
 const useStyles = makeStyles({
   root: {
