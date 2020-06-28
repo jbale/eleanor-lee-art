@@ -31,7 +31,6 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Portfolio" />
-      <h1>Portfolio</h1>
       <Paintings paintings={paintings} />
       {pageContext.numPages > 1 && (
         <div className={classes.paginationContainer}>
