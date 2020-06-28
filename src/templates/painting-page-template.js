@@ -72,7 +72,10 @@ export const paintingPageTemplateQuery = graphql`
       media {
         localFile {
           childImageSharp {
-            fluid(maxHeight: 600, quality: 100) {
+            thumbnail: fixed(width: 150) {
+              ...GatsbyImageSharpFixed
+            }
+            fluid(maxWidth: 4096, quality: 100) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }
