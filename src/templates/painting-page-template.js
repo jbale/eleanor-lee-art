@@ -75,8 +75,12 @@ export const paintingPageTemplateQuery = graphql`
             thumbnail: fixed(width: 150) {
               ...GatsbyImageSharpFixed
             }
-            fluid(maxWidth: 4096, quality: 100) {
+            original: fluid(maxWidth: 4096, quality: 100) {
               ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluidLimitPresentationSize
+            },
+            square: fluid(maxWidth: 4096, maxHeight: 4096, quality: 100, fit: CONTAIN, background: "#fafafa") {
+              ...GatsbyImageSharpFluid_noBase64
               ...GatsbyImageSharpFluidLimitPresentationSize
             }
           }

@@ -1,11 +1,11 @@
 import React from "react"
-import Img from "gatsby-image"
+import Img from "gatsby-image/withIEPolyfill"
 import ReactImageGallery from 'react-image-gallery';
 import { Fab } from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import { makeStyles } from "@material-ui/styles";
-import { LANDSCAPE_ASPECT_RATIO } from './../constants';
+import PropTypes from 'prop-types';
 import useMouseActive from "../hooks/useMouseActive";
 
 const useStyles = makeStyles((theme) => ({
@@ -15,9 +15,14 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      '& .gatsby-image-wrapper': {
+        height: '100vh',
+        width: '100vw',
+        margin: 'auto'
+      },
       '& .image-gallery-thumbnails-wrapper.bottom': {
         position: 'absolute',
-        bottom: '-100px',
+        bottom: '-120px',
         transition: '1s'
       }
     },
@@ -49,11 +54,13 @@ const ImageGallery = ({images}) => {
 
   const mouseActive = useMouseActive();
   const classes = useStyles();
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   const items = images.map(image => ({
-    original: image.localFile.childImageSharp.fluid.src,
-    thumbnail: image.localFile.childImageSharp.thumbnail.src,
-    image: image.localFile.childImageSharp
+    original: image.original,
+    thumbnail: image.thumbnail,
+    elGallery: image.gallery,
+    elFullscreen: image.fullscreen,
   }))
 
   const renderLeftNav = (onClick, disabled) => {
@@ -79,9 +86,17 @@ const ImageGallery = ({images}) => {
   const renderImage = (item) => {
     return (
       <div>
-        <Img fluid={item.image.fluid} sizes={{ ...item.image.fluid, aspectRatio: LANDSCAPE_ASPECT_RATIO }}  />
+        {
+          isFullscreen ?
+            <Img fluid={item.elFullscreen} objectFit="contain" /> :
+            <Img fluid={item.elGallery} objectFit="contain" backgroundColor="#fafafa" />
+        }
       </div>
     );
+  }
+
+  const onScreenChange = (fullscreen) => {
+    setIsFullscreen(fullscreen)
   }
 
   return (
@@ -92,9 +107,21 @@ const ImageGallery = ({images}) => {
         renderItem={renderImage}
         renderLeftNav={renderLeftNav}
         renderRightNav={renderRightNav}
+        onScreenChange={onScreenChange}
         />
     </div>
   );
+}
+
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      original: PropTypes.string,
+      thumbnail: PropTypes.string,
+      fullscreen: PropTypes.object,
+      gallery: PropTypes.object
+    })
+  )
 }
 
 export default ImageGallery
