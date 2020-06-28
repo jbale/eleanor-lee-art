@@ -15,7 +15,10 @@ export default function useMouseActive () {
 
     document.addEventListener('mousemove', handleMouseMove, false);
 
-    return () => document.removeEventListener('mousemove', handleMouseMove, false);
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove, false);
+      clearTimeout(timeoutId.current);
+    }
   }, [])
 
   return mouseActive;
