@@ -14,9 +14,11 @@ export default function useMouseActive () {
     }
 
     document.addEventListener('mousemove', handleMouseMove, false);
+    document.addEventListener('click', handleMouseMove, false);
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove, false);
+      document.removeEventListener('click', handleMouseMove, false);
       clearTimeout(timeoutId.current);
     }
   }, [])
