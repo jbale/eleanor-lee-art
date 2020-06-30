@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-export const theme = createMuiTheme({
+const _theme = {
   spacing: factor => `${0.25 * factor}rem`,
   palette: {
     primary: blue
@@ -17,12 +17,14 @@ export const theme = createMuiTheme({
       '"Segoe UI Symbol"',
     ].join(',')
   }
-});
+};
 
-export const darkTheme = {
-  ...theme,
+export const theme = createMuiTheme(_theme);
+
+export const darkTheme = createMuiTheme({
+  ..._theme,
   palette: {
-    ...theme.palette, type: 'dark'
+    ..._theme.palette,
+    type: 'dark'
   }
-}
-
+});
