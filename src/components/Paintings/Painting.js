@@ -51,11 +51,11 @@ const PaintingSummary = ({ painting }) => {
         </div>
         <div>
           <Typography variant="h4" component="h1">{painting.title}</Typography>
-          <Typography variant="overline">120 x 160 CM</Typography>
+          <Typography variant="overline">{painting.width} x {painting.height} CM</Typography>
           <br />
-          <Typography variant="subtitle1">Original oil on canvas in white wood frame.</Typography>
+          <Typography variant="subtitle1">{painting.medium}</Typography>
           <br />
-          <Typography variant="body1">Rock beach is just around the corner from the studio, you can travel the world but some of the most picturesque scenes are right on your doorstep. Painted in Cornwall </Typography>
+          <Typography variant="body1">{painting.description}</Typography>
         </div>
       </div>
   );

@@ -69,6 +69,10 @@ export const paintingPageTemplateQuery = graphql`
       slug
       created_at
       title
+      width
+      height
+      medium
+      description
       media {
         localFile {
           childImageSharp {
