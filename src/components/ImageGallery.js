@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     top: '50%',
     transform: 'translateY(-50%)',
     '&.hidden': {
-      transform: 'translate(-100%, -50%)'
+      transform: 'translate(-100%, -50%) scale(0)'
     }
   },
   rightNav: {
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     top: '50%',
     transform: 'translateY(-50%)',
     '&.hidden': {
-      transform: 'translate(100%, -50%)'
+      transform: 'translate(100%, -50%) scale(0)'
     }
   },
   fullscreenNav: {
