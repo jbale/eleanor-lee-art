@@ -31,9 +31,6 @@ const useStyles = makeStyles({
     marginBottom: '5rem'
   },
   footer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
     height: '2.5rem',
     textAlign: 'center'
   }
@@ -50,22 +47,18 @@ const Layout = ({ hero, children }) => {
       </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className={classes.root}>
-          <div className={classes.content}>
-            <Header />
-            {hero && (
-              <div className={classes.hero}>
-                {hero}
-              </div>
-            )}
-            <Container maxWidth="lg" component="main">{children}</Container>
-          </div>
-
-          <footer className={classes.footer}>
-            © {new Date().getFullYear()}, Eleanor Lee
-          </footer>
-        </div>
-
+        <Header />
+        <main>
+          {hero && (
+            <section className={classes.hero}>
+              {hero}
+            </section>
+          )}
+          <Container maxWidth="lg" component="section">{children}</Container>
+        </main>
+        <footer className={classes.footer}>
+          © {new Date().getFullYear()}, Eleanor Lee
+        </footer>
       </ThemeProvider>
     </>
   )

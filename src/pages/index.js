@@ -6,7 +6,6 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/custom-animations/scale-out-animation.css';
 import 'react-awesome-slider/dist/styles.css';
 
-import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
@@ -27,9 +26,10 @@ const IndexPage = ({ data }) => {
   );
 
   return (
-    <Layout hero={hero}>
+    <>
       <SEO title="Home" />
-    </Layout>
+      <h1>Hello</h1>
+    </>
   );
 }
 

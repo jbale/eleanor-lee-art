@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { graphql, Link } from 'gatsby'
 
-import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 
 import { Painting } from '../components/Paintings'
@@ -39,7 +38,7 @@ const PaintingTemplate = ({ data, pageContext}) => {
   const painting = data.strapiPaintings;
 
   return (
-    <Layout>
+    <>
       <SEO title={painting.title} />
       <div className={classes.paintingNav}>
         <div className={classes.navLink}>
@@ -59,7 +58,7 @@ const PaintingTemplate = ({ data, pageContext}) => {
         </div>
       </div>
       <Painting painting={painting} />
-    </Layout>
+    </>
   );
 }
 

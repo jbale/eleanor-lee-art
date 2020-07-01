@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { graphql, navigate } from 'gatsby'
 
-import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import { Paintings } from '../components/Paintings'
 
@@ -29,7 +28,7 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
   const paintings = data.allStrapiPaintings.edges.map(({ node }) => node);
 
   return (
-    <Layout>
+    <>
       <SEO title="Portfolio" />
       <Paintings paintings={paintings} />
       {pageContext.numPages > 1 && (
@@ -41,7 +40,7 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
             color="primary" />
         </div>
       )}
-    </Layout>
+    </>
   );
 }
 
