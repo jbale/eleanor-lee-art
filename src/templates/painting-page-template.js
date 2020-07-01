@@ -5,7 +5,7 @@ import { graphql, Link } from 'gatsby'
 import SEO from '../components/Seo'
 
 import { Painting } from '../components/Paintings'
-import { Typography } from '@material-ui/core';
+import { Typography, Container } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const PaintingTemplate = ({ data, pageContext}) => {
   const painting = data.strapiPaintings;
 
   return (
-    <>
+    <Container maxWidth="lg" component="section">
       <SEO title={painting.title} />
       <div className={classes.paintingNav}>
         <div className={classes.navLink}>
@@ -58,7 +58,7 @@ const PaintingTemplate = ({ data, pageContext}) => {
         </div>
       </div>
       <Painting painting={painting} />
-    </>
+    </Container>
   );
 }
 

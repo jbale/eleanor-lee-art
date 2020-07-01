@@ -49,12 +49,7 @@ const Layout = ({ hero, children }) => {
         <CssBaseline />
         <Header />
         <main>
-          {hero && (
-            <section className={classes.hero}>
-              {hero}
-            </section>
-          )}
-          <Container maxWidth="lg" component="section">{children}</Container>
+          {children}
         </main>
         <footer className={classes.footer}>
           © {new Date().getFullYear()}, Eleanor Lee

@@ -6,6 +6,7 @@ import SEO from '../components/Seo'
 import { Paintings } from '../components/Paintings'
 
 import Pagination from '@material-ui/lab/Pagination';
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   gridList: {
@@ -28,7 +29,7 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
   const paintings = data.allStrapiPaintings.edges.map(({ node }) => node);
 
   return (
-    <>
+    <Container maxWidth="lg" component="section">
       <SEO title="Portfolio" />
       <Paintings paintings={paintings} />
       {pageContext.numPages > 1 && (
@@ -40,7 +41,7 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
             color="primary" />
         </div>
       )}
-    </>
+    </Container>
   );
 }
 
