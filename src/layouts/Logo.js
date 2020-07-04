@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,8 +22,6 @@ const Logo = () => {
   const data = useStaticQuery(graphql`
     query SiteHeaderQuery {
       strapiHeader {
-        title
-        subtitle
         logo {
           localFile {
             image: childImageSharp {

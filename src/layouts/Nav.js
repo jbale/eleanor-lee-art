@@ -7,11 +7,15 @@ import Link from '../components/Link';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
+    top: 0,
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: theme.spacing(8),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(8),
+    },
     '& ul': {
       display: 'flex',
       '& li': {
@@ -30,19 +34,19 @@ const menu = [
   },
   {
     to: '/work',
-    display: 'Work',
+    display: 'WORK',
     partiallyActive: true
   },
   {
     to: '/news',
-    display: 'News',
+    display: 'NEWS',
     partiallyActive: true
   }
 ];
 
 const contact = {
   to: '/contact',
-  display: 'Contact',
+  display: 'CONTACT',
   partiallyActive: true
 };
 

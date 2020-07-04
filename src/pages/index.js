@@ -1,37 +1,45 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import AwesomeSlider from 'react-awesome-slider';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import 'react-awesome-slider/dist/custom-animations/scale-out-animation.css';
-import 'react-awesome-slider/dist/styles.css';
-
-import { Container } from "@material-ui/core"
-
+import { Container, Typography, makeStyles } from "@material-ui/core"
 
 import SEO from '../components/Seo'
+import Img from 'gatsby-image';
 
-const AutoplaySlider = withAutoplay(AwesomeSlider);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: `calc(100vh - ${theme.nav.height})`,
+    overflow: 'hidden'
+  },
+  header: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(15),
+    '& h1': {
+      fontWeight: theme.typography.fontWeightMedium
+    },
+    '& h2': {
+      fontWeight: theme.typography.fontWeightLight,
+      fontSize: theme.typography.h4.fontSize
+    }
+  },
+  showcase:{
+    margin: 'auto',
+    boxShadow: theme.shadows[10]
+  }
+}));
 
 const IndexPage = ({ data }) => {
-
-  const hero = (
-    <AutoplaySlider
-      animation="scaleOutAnimation"
-      fillParent={true}
-      play={true}
-      cancelOnInteraction={false}
-      interval={6000}>
-      {data.strapiHome.slider.map((image) => (
-        <div key={image.id} data-src={image.localFile.publicURL}></div>
-      ))}
-    </AutoplaySlider>
-  );
+  const classes = useStyles();
+  const {title, subtitle, showcase} = data.strapiHome;
 
   return (
-    <Container maxWidth="lg" component="section">
+    <Container maxWidth="lg" component="section" className={classes.root}>
       <SEO title="Home" />
-      <h1>Hello</h1>
+      <header className={classes.header}>
+        <Typography variant="h1">{title.toUpperCase()}</Typography>
+        <Typography variant="h2">{subtitle.toUpperCase()}</Typography>
+      </header>
+      <Img className={classes.showcase} fluid={showcase.localFile.childImageSharp.fluid} />
     </Container>
   );
 }
@@ -41,10 +49,16 @@ export default IndexPage
 export const pageQuery = graphql`
   query HomeQuery {
     strapiHome {
-      slider {
-        id
+      title
+      subtitle
+      showcase {
         localFile {
-          publicURL
+          childImageSharp {
+            fluid(maxWidth: 700, quality: 100) {
+              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluidLimitPresentationSize
+            }
+          }
         }
       }
     }

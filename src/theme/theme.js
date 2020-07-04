@@ -1,13 +1,19 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
 const _theme = {
   palette: {
-    primary: blue
+    primary: blue,
+    text: {
+      disabled: "rgba(0, 0, 0, 0.38)",
+      hint: "rgba(0, 0, 0, 0.38)",
+      primary: "rgba(0, 0, 0, 0.75)",
+      secondary: "rgba(0, 0, 0, 0.44)"
+    }
   },
   typography: {
     fontFamily: [
-      'Quicksand',
+      'Lato',
       '"Helvetica Neue"',
       'Arial',
       'sans-serif',
@@ -15,15 +21,22 @@ const _theme = {
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(',')
+  },
+  nav: {
+    height: '210px'
   }
 };
+let theme = createMuiTheme(_theme);
+theme = responsiveFontSizes(theme);
 
-export const theme = createMuiTheme(_theme);
-
-export const darkTheme = createMuiTheme({
+let darkTheme = createMuiTheme({
   ..._theme,
   palette: {
     ..._theme.palette,
     type: 'dark'
   }
 });
+darkTheme = responsiveFontSizes(darkTheme);
+
+export { theme, darkTheme }
+
