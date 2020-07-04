@@ -2,7 +2,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
 const _theme = {
-  spacing: factor => `${0.25 * factor}rem`,
   palette: {
     primary: blue
   },

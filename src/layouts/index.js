@@ -16,6 +16,7 @@ import Header from './Header'
 import './layout.css'
 import { Container, CssBaseline } from '@material-ui/core';
 import { theme } from '../theme';
+import { LayoutContextProviderComponent } from '../contexts/LayoutContext';
 
 const useStyles = makeStyles({
   root: {
@@ -46,14 +47,16 @@ const Layout = ({ hero, children }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Helmet>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header />
-        <main>
-          {children}
-        </main>
-        <footer className={classes.footer}>
-          © {new Date().getFullYear()}, Eleanor Lee
-        </footer>
+        <LayoutContextProviderComponent>
+          <CssBaseline />
+          <Header />
+          <main>
+            {children}
+          </main>
+          <footer className={classes.footer}>
+            © {new Date().getFullYear()}, Eleanor Lee
+          </footer>
+        </LayoutContextProviderComponent>
       </ThemeProvider>
     </>
   )
