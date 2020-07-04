@@ -28,7 +28,7 @@ const Logo = () => {
         logo {
           localFile {
             image: childImageSharp {
-              fixed(width: 100) {
+              fixed(width: 75) {
                 ...GatsbyImageSharpFixed
               }
             }
@@ -41,8 +41,6 @@ const Logo = () => {
   return (
     <Link to="/" className={classes.root}>
       <Img fixed={data.strapiHeader.logo.localFile.image.fixed} loading="eager" alt="logo" />
-      <Typography component="span" variant="h3">{data.strapiHeader.title}</Typography>
-      <Typography component="span" variant="h6">{data.strapiHeader.subtitle}</Typography>
     </Link>
   )
 }
