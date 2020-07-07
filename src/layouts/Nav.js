@@ -55,7 +55,7 @@ const Nav = () => {
   const trigger = useScrollTrigger({
     disableHysteresis: true
   });
-  const animateClass = !trigger ? 'animate__animated animate__fadeInDown' : 'animate__animated animate__fadeOutUp';
+  const animateClass = !trigger ? 'animate__animated animate__fadeInDownMedium' : 'animate__animated animate__fadeOutUpMedium';
 
   return (
     <nav className={`${classes.root}`} >

@@ -1,6 +1,37 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 @import "~animate.css";
 
+@keyframes fadeInDownMedium {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate__fadeInDownMedium {
+  animation-name: fadeInDownMedium;
+}
+
+@keyframes fadeOutUpMedium {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100px, 0);
+  }
+}
+
+.animate__fadeOutUpMedium {
+  animation-name: fadeOutUpMedium;
+}
+
 ul {
 	list-style: none;
 	margin: 0;
