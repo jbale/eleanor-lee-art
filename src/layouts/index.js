@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import { CssBaseline } from '@material-ui/core';
-import { ThemeProvider, useTheme } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
 import './layout.css'
 import { theme } from '../theme';

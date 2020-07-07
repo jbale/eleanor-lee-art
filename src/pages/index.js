@@ -7,10 +7,7 @@ import SEO from '../components/Seo'
 import Img from 'gatsby-image';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: `calc(100vh - ${theme.nav.height})`,
-    overflow: 'hidden'
-  },
+  root: {},
   header: {
     textAlign: 'center',
     marginBottom: theme.spacing(15),
@@ -33,14 +30,17 @@ const IndexPage = ({ data }) => {
   const {title, subtitle, showcase} = data.strapiHome;
 
   return (
+    <>
     <Container maxWidth="lg" component="section" className={classes.root}>
       <SEO title="Home" />
-      <header className={classes.header}>
+      <header className={`${classes.header}`}>
         <Typography variant="h1">{title.toUpperCase()}</Typography>
         <Typography variant="h2">{subtitle.toUpperCase()}</Typography>
       </header>
       <Img className={classes.showcase} fluid={showcase.localFile.childImageSharp.fluid} />
     </Container>
+    <div style={{height: '500px'}}></div>
+    </>
   );
 }
 

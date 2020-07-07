@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, useScrollTrigger } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Logo from './Logo';
 import Link from '../components/Link';
@@ -52,13 +52,17 @@ const contact = {
 
 const Nav = () => {
   const classes = useStyles();
+  const trigger = useScrollTrigger({
+    disableHysteresis: true
+  });
+  const animateClass = !trigger ? 'animate__animated animate__fadeInDown' : 'animate__animated animate__fadeOutUp';
 
   return (
-    <nav className={classes.root}>
+    <nav className={`${classes.root}`} >
       <Logo />
       <ul>
-        {menu.map((menuItem) => (
-          <li key={menuItem.to}>
+        {menu.map((menuItem, index) => (
+          <li key={menuItem.to} className={animateClass} style={{animationDelay: `${index * 100}ms`}}>
             <Link to={menuItem.to} activeStyle={{ textDecoration: 'underline' }} partiallyActive={menuItem.partiallyActive}>
               <Typography variant="button">
                 {menuItem.display}
