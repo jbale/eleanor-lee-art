@@ -39,7 +39,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const numPages = Math.ceil(paintings.length / paintingsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
+      path: i === 0 ? `/work` : `/work/${i + 1}`,
       component: path.resolve("./src/templates/portfolio-page-template.js"),
       context: {
         limit: paintingsPerPage,
@@ -52,16 +52,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Create pages for each painting.
   paintings.forEach(({ node }, index) => {
-    const prev = paintings[index - 1];
-    const next = paintings[index + 1];
+    const previousPaintingIndex = ((paintings.length - 1) + index) % paintings.length;
+    const nextPaintingIndex = ((paintings.length + 1) + index) % paintings.length
+    const prev = paintings[previousPaintingIndex];
+    const next = paintings[nextPaintingIndex];
 
     createPage({
-      path: `portfolio/${node.slug}`,
+      path: `work/${node.slug}`,
       component: path.resolve(`src/templates/painting-page-template.js`),
       context: {
-        slug: node.slug,
-        next: next ? `/portfolio/${next.node.slug}` : null,
-        prev: prev ? `/portfolio/${prev.node.slug}` : null
+        current: node.slug,
+        next: next.node.slug,
+        prev: prev.node.slug
       },
     })
   })

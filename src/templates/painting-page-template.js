@@ -1,70 +1,39 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { graphql, Link } from 'gatsby'
-
-import SEO from '../components/Seo'
-
+import { graphql } from 'gatsby'
 import { Painting } from '../components/Paintings'
-import { Typography, Container } from '@material-ui/core';
+import ScrollDownIcon from '../components/ScrollDownIcon';
+import PaintingsCarousel from '../components/Paintings/PaintingsCarousel';
 
 
-const useStyles = makeStyles((theme) => ({
-  paintingNav: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
-  },
-  navLink: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    '& a': {
-      color: theme.palette.text.primary,
-      textDecoration: 'none',
-      textDecorationColor: 'black',
-      '&:hover': {
-        textDecoration: 'underline'
-      }
-    },
-    '& > span': {
-      color: theme.palette.text.disabled,
-      cursor: 'not-allowed'
-    }
-  }
-}));
-
-const PaintingTemplate = ({ data, pageContext}) => {
-  const classes = useStyles();
-  const painting = data.strapiPaintings;
+const PaintingTemplate = ({ data }) => {
+  const painting = data.current;
+  const prev = data.prev;
+  const next = data.next;
 
   return (
-    <Container maxWidth="lg" component="section">
-      <SEO title={painting.title} />
-      <div className={classes.paintingNav}>
-        <div className={classes.navLink}>
-          {pageContext.next ? (
-            <Link to={pageContext.next}><Typography variant="button">Next</Typography></Link>
-          ) : (
-            <Typography variant="button">Next</Typography>
-          )}
-        </div>
-        <div>|</div>
-        <div className={classes.navLink}>
-          {pageContext.prev ? (
-            <Link to={pageContext.prev}><Typography variant="button">Previous</Typography></Link>
-          ) : (
-            <Typography variant="button">Previous</Typography>
-          )}
-        </div>
+    <>
+      <section>
+        <PaintingsCarousel
+          prevLink={`/work/${prev.slug}`}
+          prevImage={prev.showcase.localFile.childImageSharp.fluid}
+          currentImage={painting.showcase.localFile.childImageSharp.fluid}
+          nextLink={`/work/${next.slug}`}
+          nextImage={next.showcase.localFile.childImageSharp.fluid}
+        />
+      </section>
+      <section>
+        <Painting painting={painting} />
+      </section>
+      <div style={{ position: 'absolute', bottom: '19px', left: '50%', transform: 'translate(-50%)' }}>
+        <ScrollDownIcon />
       </div>
-      <Painting painting={painting} />
-    </Container>
+    </>
   );
 }
 
 export const paintingPageTemplateQuery = graphql`
-  query PaintingPageTemplate($slug: String!) {
-    strapiPaintings(slug: { eq: $slug }) {
+  query PaintingPageTemplate($current: String!, $next: String!, $prev: String!) {
+    current: strapiPaintings(slug: { eq: $current }) {
       slug
       created_at
       title
@@ -72,18 +41,47 @@ export const paintingPageTemplateQuery = graphql`
       height
       medium
       description
+      showcase {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluidLimitPresentationSize
+            }
+          }
+        }
+      }
       media {
         localFile {
           childImageSharp {
-            thumbnail: fixed(width: 150) {
-              ...GatsbyImageSharpFixed
-            }
-            original: fluid(maxWidth: 4096, quality: 100) {
+            fluid(maxWidth: 4096, quality: 100) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
-            },
-            square: fluid(maxWidth: 4096, maxHeight: 4096, quality: 100, fit: CONTAIN, background: "#fafafa") {
-              ...GatsbyImageSharpFluid_noBase64
+            }
+          }
+        }
+      }
+    }
+    prev: strapiPaintings(slug: { eq: $prev }) {
+      slug
+      showcase {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 600, quality: 100) {
+              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluidLimitPresentationSize
+            }
+          }
+        }
+      }
+    }
+    next: strapiPaintings(slug: { eq: $next }) {
+      slug
+      showcase {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 600, quality: 100) {
+              ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }
           }
