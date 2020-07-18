@@ -22,7 +22,7 @@ module.exports = {
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'paintings'
         ],
-        singleTypes: ['logo', 'home'],
+        singleTypes: ['logo', 'home', 'social-media', 'mailing-list'],
         queryLimit: 1000,
       },
     },
