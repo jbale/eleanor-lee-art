@@ -29,7 +29,7 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
   const paintings = data.allStrapiPaintings.edges.map(({ node }) => node);
 
   return (
-    <Container maxWidth="lg" component="section">
+    <div style={{padding: '1rem'}}>
       <SEO title="Portfolio" />
       <Paintings paintings={paintings} />
       {pageContext.numPages > 1 && (
@@ -41,7 +41,7 @@ const PortfolioPageTemplate = ({ data, pageContext }) => {
             color="primary" />
         </div>
       )}
-    </Container>
+    </div>
   );
 }
 
@@ -53,20 +53,13 @@ export const portfolioListQuery = graphql`
           slug
           created_at
           title
-          media {
-            localFile {
-              childImageSharp {
-                fluid(maxHeight: 600, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                  ...GatsbyImageSharpFluidLimitPresentationSize
-                }
-              }
-            }
-          }
+          width
+          height
+          title
           overview {
             localFile {
               childImageSharp {
-                fluid(maxHeight: 600, quality: 100) {
+                fluid(maxHeight: 1000, quality: 100) {
                   ...GatsbyImageSharpFluid
                   ...GatsbyImageSharpFluidLimitPresentationSize
                 }
@@ -76,7 +69,7 @@ export const portfolioListQuery = graphql`
           detail {
             localFile {
               childImageSharp {
-                fluid(maxHeight: 600, quality: 100) {
+                fluid(maxHeight: 1000, quality: 100) {
                   ...GatsbyImageSharpFluid
                   ...GatsbyImageSharpFluidLimitPresentationSize
                 }
