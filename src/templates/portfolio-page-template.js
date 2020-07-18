@@ -6,7 +6,6 @@ import SEO from '../components/Seo'
 import { Paintings } from '../components/Paintings'
 
 import Pagination from '@material-ui/lab/Pagination';
-import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   gridList: {
