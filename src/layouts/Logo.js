@@ -21,7 +21,7 @@ const Logo = () => {
 
   const data = useStaticQuery(graphql`
     query SiteHeaderQuery {
-      strapiHeader {
+      strapiLogo {
         logo {
           localFile {
             image: childImageSharp {
@@ -37,7 +37,7 @@ const Logo = () => {
 
   return (
     <Link to="/" className={classes.root}>
-      <Img fixed={data.strapiHeader.logo.localFile.image.fixed} loading="eager" alt="logo" />
+      <Img fixed={data.strapiLogo.logo.localFile.image.fixed} loading="eager" alt="logo" />
     </Link>
   )
 }

@@ -12,15 +12,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: theme.spacing(2),
+    padding: `${theme.spacing(2)}px`,
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(8),
+      padding: `${theme.spacing(8)}px`,
     },
+    zIndex: theme.zIndex.appBar,
     '& ul': {
       display: 'flex',
       '& li': {
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4)
+        paddingLeft: `${theme.spacing(4)}px`,
+        paddingRight: `${theme.spacing(4)}px`
       }
     }
   }
@@ -53,7 +54,8 @@ const contact = {
 const Nav = () => {
   const classes = useStyles();
   const trigger = useScrollTrigger({
-    disableHysteresis: true
+    disableHysteresis: true,
+    threshold: 50
   });
   const animateClass = !trigger ? 'animate__animated animate__fadeInDownMedium' : 'animate__animated animate__fadeOutUpMedium';
 

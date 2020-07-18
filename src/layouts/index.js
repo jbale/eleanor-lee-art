@@ -16,6 +16,7 @@ import './layout.css'
 import { theme } from '../theme';
 import { LayoutContextProviderComponent } from '../contexts/LayoutContext';
 import Nav from './Nav';
+import Main from './Main';
 import Footer from './Footer';
 
 const Layout = ({ children }) => {
@@ -30,9 +31,9 @@ const Layout = ({ children }) => {
         <LayoutContextProviderComponent>
           <CssBaseline />
           <Nav />
-          <main style={{ marginTop: theme.nav.height}}>
+          <Main>
             {children}
-          </main>
+          </Main>
           <Footer />
         </LayoutContextProviderComponent>
       </ThemeProvider>
