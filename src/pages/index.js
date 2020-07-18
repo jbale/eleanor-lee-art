@@ -109,9 +109,9 @@ const IndexPage = ({ data }) => {
           </Container>
         </BackgroundImage>
       </section>
-      <div className={featureImageAnimateClass} ref={featureImageRef}>
+      <section className={featureImageAnimateClass} ref={featureImageRef}>
         <BackgroundImage Tag="div" fluid={featureImage.localFile.childImageSharp.fluid} style={{ minHeight: '75vh' }}></BackgroundImage>
-      </div>
+      </section>
 
     </>
   );
