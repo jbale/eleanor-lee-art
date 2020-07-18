@@ -20,7 +20,10 @@ const _theme = {
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-    ].join(',')
+    ].join(','),
+    subtitle2: {
+      fontWeight: 600
+    },
   },
   nav: {
     height: '210px',
