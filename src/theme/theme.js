@@ -23,7 +23,8 @@ const _theme = {
     ].join(',')
   },
   nav: {
-    height: '210px'
+    height: '210px',
+    heightSm: '110px'
   }
 };
 let theme = createMuiTheme(_theme);
