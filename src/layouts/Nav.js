@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: `${theme.spacing(4)}px`
       }
     }
+  },
+  headerOffset: {
+    marginTop: '110px',
+    [theme.breakpoints.up('md')]: {
+      marginTop: '210px'
+    }
   }
 }));
 
@@ -60,25 +66,28 @@ const Nav = () => {
   const animateClass = !trigger ? 'animate__animated animate__fadeInDownMedium' : 'animate__animated animate__fadeOutUpMedium';
 
   return (
-    <nav className={`${classes.root}`} >
-      <Logo />
-      <ul>
-        {menu.map((menuItem, index) => (
-          <li key={menuItem.to} className={animateClass} style={{animationDelay: `${index * 100}ms`}}>
-            <Link to={menuItem.to} activeStyle={{ textDecoration: 'underline' }} partiallyActive={menuItem.partiallyActive}>
-              <Typography variant="button">
-                {menuItem.display}
-              </Typography>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Link to={contact.to} activeStyle={{ textDecoration: 'underline' }} partiallyActive={contact.partiallyActive}>
-        <Typography variant="button">
-          {contact.display}
-        </Typography>
-      </Link>
-    </nav>
+    <>
+      <nav className={`${classes.root}`} >
+        <Logo />
+        <ul>
+          {menu.map((menuItem, index) => (
+            <li key={menuItem.to} className={animateClass} style={{animationDelay: `${index * 100}ms`}}>
+              <Link to={menuItem.to} activeStyle={{ textDecoration: 'underline' }} partiallyActive={menuItem.partiallyActive}>
+                <Typography variant="button">
+                  {menuItem.display}
+                </Typography>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link to={contact.to} activeStyle={{ textDecoration: 'underline' }} partiallyActive={contact.partiallyActive}>
+          <Typography variant="button">
+            {contact.display}
+          </Typography>
+        </Link>
+      </nav>
+      <div className={classes.headerOffset}></div>
+    </>
   )
 }
 

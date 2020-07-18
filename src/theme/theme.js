@@ -24,10 +24,6 @@ const _theme = {
     subtitle2: {
       fontWeight: 600
     },
-  },
-  nav: {
-    height: '210px',
-    heightSm: '110px'
   }
 };
 let theme = createMuiTheme(_theme);
