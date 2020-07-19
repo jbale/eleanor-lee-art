@@ -3,16 +3,26 @@ import { graphql } from 'gatsby'
 import { Painting } from '../components/Paintings'
 import ScrollDownIcon from '../components/ScrollDownIcon';
 import PaintingsCarousel from '../components/Paintings/PaintingsCarousel';
+import { makeStyles } from '@material-ui/core';
 
+const useStyles = makeStyles(theme => ({
+  paintingsNav:  {
+    height: `calc(100vh - ${theme.nav.heightSm})`,
+    [theme.breakpoints.up('md')]: {
+      height: `calc(100vh - ${theme.nav.height})`
+    }
+  }
+}));
 
 const PaintingTemplate = ({ data }) => {
+  const classes = useStyles();
   const painting = data.current;
   const prev = data.prev;
   const next = data.next;
 
   return (
     <>
-      <section>
+      <section className={classes.paintingsNav}>
         <PaintingsCarousel
           prevLink={`/work/${prev.slug}`}
           prevImage={prev.showcase.localFile.childImageSharp.fluid}
@@ -44,7 +54,7 @@ export const paintingPageTemplateQuery = graphql`
       showcase {
         localFile {
           childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
+            fluid(maxWidth: 1500, quality: 100) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }

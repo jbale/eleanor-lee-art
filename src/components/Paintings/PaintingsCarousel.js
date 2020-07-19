@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
       position: 'relative',
       overflow:'hidden',
+      background: theme.palette.grey[100],
       [theme.breakpoints.up('md')]: {
         display: 'block',
         flex: 'auto'
@@ -27,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      background: theme.palette.grey[200],
       [theme.breakpoints.up('md')]: {
         maxWidth: `${theme.breakpoints.width('md') - 300}px`,
       },
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
       position: 'relative',
       overflow:'hidden',
+      background: theme.palette.grey[100],
       [theme.breakpoints.up('md')]: {
         display: 'block',
         flex: 'auto'

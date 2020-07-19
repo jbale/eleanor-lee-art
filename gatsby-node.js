@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(
     `{
-        allStrapiPaintings(
+        all: allStrapiPaintings(
           sort: {fields: [created_at], order: DESC},
           limit: 1000
         ) {
@@ -22,6 +22,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               slug
               created_at
               title
+              sold
+            }
+          }
+        }
+        avaliable: allStrapiPaintings(sort: {fields: [created_at], order: DESC}, limit: 1000, filter: {sold: {eq: false}}) {
+          edges {
+            node {
+              slug
+              created_at
+              title
+              sold
             }
           }
         }
@@ -34,14 +45,36 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   // Create portfolio-list pages
-  const paintings = result.data.allStrapiPaintings.edges
-  const paintingsPerPage = 6
+  const paintings = result.data.all.edges
+  const paintingsPerPage = 20
   const numPages = Math.ceil(paintings.length / paintingsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
       path: i === 0 ? `/work` : `/work/${i + 1}`,
       component: path.resolve("./src/templates/portfolio-page-template.js"),
       context: {
+        filter: {},
+        activeFilter: 'all',
+        limit: paintingsPerPage,
+        skip: i * paintingsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  });
+
+  const avaliablePaintings = result.data.all.edges
+  const avaliablePaintingsPerPage = 20
+  const avaliableNumPages = Math.ceil(avaliablePaintings.length / avaliablePaintingsPerPage);
+  Array.from({ length: avaliableNumPages > 0 ? avaliableNumPages : 1}).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/work/avaliable` : `/work/avaliable/${i + 1}`,
+      component: path.resolve("./src/templates/portfolio-page-template.js"),
+      context: {
+        filter: {
+          sold: { eq: false }
+        },
+        activeFilter: 'avaliable',
         limit: paintingsPerPage,
         skip: i * paintingsPerPage,
         numPages,
